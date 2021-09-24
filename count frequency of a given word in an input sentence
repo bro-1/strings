@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+int countOccurence(string str,string target){
+	int res;
+	map<string, int> mpp;
+	string word="";
+	for(int i=0;i<str.size();i++){
+		if(str[i]==' '){
+			if(mpp.find(word)==mpp.end()){
+			//	mpp.insert(make_pair(word,1));
+			mpp[word]=1;
+				word="";
+			}
+			else{
+				mpp[word]++;
+				word="";
+			}
+		}
+		else word +=str[i];
+	}
+	if(mpp.find(word)==mpp.end())
+		mpp.insert(make_pair(word,1));
+	else mpp[word]++;
+	return mpp[target];
+}
+int main(){
+	string s;
+	getline(cin,s);
+	string x;
+	getline(cin,x);
+	int res=countOccurence(s,x);
+	cout<<res<<endl;
+	return 0;
+}
